@@ -13,25 +13,9 @@
 		/> -->
 	<context:component-scan base-package="com.globalroam.iaas.hoverv"/>
 	<aop:aspectj-autoproxy />
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<!--<property name="interceptors">
-			<list>
-				<bean class="com.easycms.frontend.interceptor.FrontendAuthenticationInterceptor"></bean>
-				<bean class="com.easycms.core.interceptor.BackendAuthenticationInterceptor"></bean>
-				<bean class="com.easycms.core.interceptor.SysParamasInterceptor"></bean>
-			</list>
-		</property>-->
-	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="webBindingInitializer">
-			<bean
-				class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
-				<property name="conversionService" ref="conversionService"></property>
-			</bean>
-		</property>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
             <list>
                 <ref bean="stringHttpMessageConverter" />
@@ -39,18 +23,6 @@
             </list>
         </property>
 	</bean>
-
-	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-
-		<!--<property name="converters">
-			<list>
-				<bean class="com.easycms.core.coverters.StringToDateConverter" />
-			</list>
-		</property>-->
-
-	</bean>
-	
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	    <property name="supportedMediaTypes">
 		    <list>
@@ -67,26 +39,6 @@
             </list>
         </property>
     </bean>
-	
-	<!-- <mvc:interceptors> <bean class="com.globalroam.mvc.interceptor.I18nLocaleChangeInterceptor"/> 
-		</mvc:interceptors> -->
-	<!-- user-defined Interceptor -->
-
-	<!-- user-defined Interceptor -->
-
-	<!-- FreeMarker视图解析 如返回student。。在这里配置后缀名ftl和视图解析器。。 -->
-	<!-- <bean id="freemarkerViewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"></property>
-		<property name="requestContextAttribute" value="rc" />
-		<property name="suffix" value=".html" />
-		<property name="contentType" value="text/html;charset=utf-8" />
-		<property name="exposeRequestAttributes" value="true" />
-		<property name="exposeSessionAttributes" value="false" />
-		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="order" value="0" />
-	</bean> -->
 
 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -95,47 +47,6 @@
         <property name="contentType" value="text/html;charset=UTF-8"/>
         <property name="order" value="1"/>
      </bean>
-      
-
 	<!-- 定位静态文件视图 -->
 	<import resource="static-mvc.xml" />
-	<!-- JSP视图 -->
-	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="prefix" value="/WEB-INF/jsp/" /> <property name="suffix" 
-		value=".jsp" /> <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
-		/> </bean> -->
-	<!-- multipart resolver conf <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-		<property name="maxUploadSize" value="100000" /> </bean> -->
-
-	<!-- <bean -->
-	<!-- class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
-	<!-- <property name="webBindingInitializer"> -->
-	<!-- <bean -->
-	<!-- class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer"> -->
-	<!-- <property name="validator" ref="validator" /> -->
-	<!-- </bean> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
-	<!-- 资源文件配置 -->
-	<!-- <bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>classpath:errors</value>
-			</list>
-		</property>
-		<property name="useCodeAsDefaultMessage" value="false" />
-	</bean> -->
-
-	<!-- 动态加载i18n -->
-	<!-- <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
-		id="localeChangeInterceptor" />
-
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="en_SG" />
-	</bean> -->
-
-
 </beans>

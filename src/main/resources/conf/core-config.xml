@@ -7,27 +7,8 @@
  http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd"
         >
-
 	<!-- 自动扫描包 -->
 	<context:component-scan base-package="com.globalroam.iaas.hoverv"/>
-
-	<!-- 认证器 -->
-	<!--<bean id="authemtocator" class="com.easycms.core.strategy.authorization.Authenticator">
-		<constructor-arg ref="defaultAuth"></constructor-arg>
-	</bean>
-	<bean id="defaultAuth" class="com.easycms.core.strategy.authorization.DefaultAuth"></bean>
-	<bean id="frontendAuth" class="com.easycms.frontend.strategy.FrontendAuth"></bean>-->
-	<!-- <bean id="ldapAuth" class="com.easycms.smartfoundry.strategy.LdapAuth"></bean> -->
-	
-	<!-- 注册器 -->
-	<!--<bean id="registryExecutor" class=" com.easycms.core.strategy.register.RegistryExecutor">
-		<constructor-arg ref="defaultRegister"></constructor-arg>
-	</bean>
-	<bean id="defaultRegister" class="com.easycms.core.strategy.register.DefaultRegister"></bean>-->
-	<!--<bean id="frontendRegister" class="com.easycms.frontend.strategy.FrontendRegister" />-->
-	
-
-	
 	<!-- 文件上传 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -66,27 +47,6 @@
 			</bean>
 		</property>
 	</bean>
-
-	<!-- freemarker配置 -->
-	<!--<bean id="freemarkerConfig"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/" />
-		<property name="defaultEncoding" value="utf-8" />
-		<property name="freemarkerSettings">
-			<props>
-				<prop key="template_update_delay">0</prop>
-				<prop key="locale">zh_CN</prop>
-				<prop key="datetime_format">yyyy-MM-dd HH:mm</prop>
-				<prop key="date_format">yyyy-MM-dd</prop>
-				<prop key="number_format">#.##</prop>
-				<prop key="auto_import">/WEB-INF/view/macro/spring.ftl as spring,/WEB-INF/view/macro/macros.ftl as EC
-				</prop>
-				<prop key="tag_syntax">auto_detect</prop>
-			</props>
-		</property>
-	</bean>-->
-	
-    <context:property-placeholder
-			location="classpath:jdbc.properties,classpath:c3p0.properties" ignore-unresolvable="true" />
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:c3p0.properties" ignore-unresolvable="true" />
 	<import resource="mybatis/spring-mybatis.xml" />
 </beans>
